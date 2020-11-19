@@ -1,0 +1,33 @@
+#! /usr/local/bin/python3
+import os
+import json
+import platform
+import datetime
+
+#Get OS distribution and version
+plat = platform.linux_distribution()
+plat = plat[0] + ' ' + plat[1]
+data = {'OS': plat}
+
+#Get date
+today = datetime.date.today()
+data['Date'] = today.strftime('%d/%m/%Y')
+
+
+#Get free memory
+cmd = "free -m | awk \'FNR == 2 {print $4}\'"
+mem =  int(os.popen(cmd).read().strip("\n"))
+data['Memory'] = mem
+
+#Get free disk space
+cmd =  "df | awk \'FNR == 2 {print $4}\'"
+stor = int(os.popen(cmd).read().strip("\n"))
+data['Storage'] = stor
+
+#Get current build with enviroment
+
+#Get workspace path
+data['Workspace'] = os.getcwd()
+
+with open('data.json', 'w') as fp:
+        json.dump(data, fp)
