@@ -21,7 +21,7 @@ pipeline {
     stage("script") {
      
       steps {
-        eccho 'checking system status...'
+        echo 'checking system status...'
       }
     }
   }
