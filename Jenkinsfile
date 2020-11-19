@@ -8,6 +8,7 @@ pipeline {
      
       steps {
         echo 'Prepare for take off...'
+        sh "ls -l"
       }
     }
       
