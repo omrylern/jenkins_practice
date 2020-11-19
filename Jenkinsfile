@@ -22,6 +22,8 @@ pipeline {
      
       steps {
         sh """
+        whoami
+        echo $PATH
         chmod +x whats_going_on
         /usr/local/bin/python3 whats_going_on
         """
