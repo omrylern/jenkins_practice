@@ -23,7 +23,7 @@ pipeline {
       steps {
         sh """
         chmod +x whats_going_on
-        python3 whats_going_on
+        /usr/local/bin/python3 whats_going_on
         """
       }
     }
