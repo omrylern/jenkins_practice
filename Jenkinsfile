@@ -7,7 +7,7 @@ pipeline {
     stage("prepare") {
      
       steps {
-        echo 'prepareing public key...'
+        echo 'Prepare for take off...'
       }
     }
       
@@ -21,7 +21,10 @@ pipeline {
     stage("script") {
      
       steps {
-        echo 'checking system status...'
+        sh """
+        chmod +x whats_going_on
+        python3 whats_going_on
+        """
       }
     }
   }
