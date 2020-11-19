@@ -16,8 +16,6 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: "9942d12b-db6f-436e-aedb-17eeba1af897" , passwordVariable: 'Password', usernameVariable: 'bob')]) {
        // sh "ansible-playbook setup.yml"
-          sh "echo $Password"
-          sh "echo $Password | base64"
         }
       }
     }
