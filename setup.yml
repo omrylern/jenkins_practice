@@ -4,8 +4,8 @@
   connection: local
   gather_facts: false
   vars:
-    user:
-    password:
+    my_user:
+    my_password:
 
   tasks:
     - name: Create a new user called Bob
