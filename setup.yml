@@ -3,13 +3,13 @@
   hosts: 127.0.0.1
   connection: local
   gather_facts: false
-  become: root
   vars:
     my_user:
     my_password:
 
   tasks:
     - name: Create Bob with .ssh directory
+      become: root
       user:
         name: "{{ my_user }}"
         password: "{{ my_password | password_hash('sha512', 'A512') }}"
