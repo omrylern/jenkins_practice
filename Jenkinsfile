@@ -9,7 +9,7 @@ pipeline {
       steps {
         echo 'Prepare for take off...'
         sh "ls -l"
-        echo $BUILD_NUMBER
+        echo "${BUILD_NUMBER}"
       }
     }
       
