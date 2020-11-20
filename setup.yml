@@ -8,28 +8,28 @@
     my_password:
 
   tasks:
-    - name: Create a new user called Bob
+    - name: Create Bob with .ssh directory
       user:
-       name: "{{ my_user }}"
-       password: "{{ my_password | password_hash('sha512', 'A512') }}"
-       shell: "/bin/{{ my_user }}"
-       state: present
-       remove: true
-       home: /home/bob
+        name: "{{ my_user }}"
+        password: "{{ my_password | password_hash('sha512', 'A512') }}"
+        shell: /bin/bash
+        state: present
+        remove: true
+        home: "/home/{{ my_user }}"
 
-    - name: Check if there's a key
-      stat: path=/var/lib/jenkins/workspace/Main/public_key.pub
-      register: key_exist
+    - name: Create .ssh dir
+      file:
+        path: /home/{{ my_user }}/.ssh
+        state: directory
+        owner: "{{ my_user }}"
+        group: "{{ my_user }}"
+        mode: 0700
 
-    - name: Move Key to bob's user
-      command: mv /var/lib/jenkins/workspace/Main/public_key.pub /home/bob/.ssh/
-      when: key_exist.stat.exist
+    - name: Create rsa keys
+      become: "{{ my_user }}"
+      command: ssh-keygen -b 2048 -t rsa -f /home/{{ my_user }}/.ssh/id_rsa -q -N ""
 
-    - name: Move readme_bob to bob's directory
-      command: mv /var/lib/jenkins/workspace/Main/readme_bob.txt /home/bob/ && chown bob /home/bob/readme_bob.txt && chmod 600 /home/bob/readme_bob.txt
-      when: key_exist.stat.exist
-
-    - name: Move readme_bob to bob's directory and set permissions
-      command: mv /var/lib/jenkins/workspace/Main/readme_bob.txt /home/bob/
-      when: key_exist.stat.exist
-...
+    - name: Copy the key to bob's authorized keys
+      file:
+        path: /var/lib/jenkins/workspace/Main/public_key.pub
+        state: file
