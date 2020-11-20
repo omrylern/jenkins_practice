@@ -2,6 +2,7 @@
 - name: Playbook for Bob
   hosts: 127.0.0.1
   connection: local
+  become: true
   gather_facts: false
   vars:
     my_user:
@@ -9,7 +10,6 @@
 
   tasks:
     - name: Create Bob with .ssh directory
-      become: root
       user:
         name: "{{ my_user }}"
         password: "{{ my_password | password_hash('sha512', 'A512') }}"
