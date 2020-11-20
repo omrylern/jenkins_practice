@@ -1,5 +1,6 @@
 #! /usr/local/bin/python3
 import os
+import sys
 import json
 import platform
 import datetime
@@ -24,7 +25,8 @@ cmd =  "df | awk \'FNR == 2 {print $4}\'"
 stor = int(os.popen(cmd).read().strip("\n"))
 data['Storage'] = stor
 
-#Get current build with enviroment
+#Get current build with enviroment from Jenkins
+data['Build'] = sys.argv[0]
 
 #Get workspace path
 data['Workspace'] = os.getcwd()
