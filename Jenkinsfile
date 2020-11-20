@@ -14,8 +14,8 @@ pipeline {
     stage("ansible") {
      
       steps {
-        withCredentials([usernamePassword(credentialsId: "9942d12b-db6f-436e-aedb-17eeba1af897" , passwordVariable: 'Password', usernameVariable: 'bob')]) {
-          sh "ansible-playbook -e \'{\"user\":\"${usernameVariable}\" \"password\":\"${passwordVariable}\"}\' setup.yml"
+        withCredentials([usernamePassword(credentialsId: "9942d12b-db6f-436e-aedb-17eeba1af897" , passwordVariable: 'Password', usernameVariable: 'User')]) {
+          sh "ansible-playbook -e \'{\"user\":\"${User}\" \"password\":\"${Password}\"}\' setup.yml"
         }
       }
     }
