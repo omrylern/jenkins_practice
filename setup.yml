@@ -1,8 +1,8 @@
 ---
 - name: Playbook for Bob
+  become: true
   hosts: 127.0.0.1
   connection: local
-  become: true
   gather_facts: false
   vars:
     my_user:
