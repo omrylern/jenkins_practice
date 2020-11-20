@@ -10,9 +10,9 @@
   tasks:
     - name: Create a new user called Bob
       user:
-       name: " {{ user }}"
-       password: "{{ password | password_hash('sha512', 'A512') }}"
-       shell: /bin/bash
+       name: "{{ my_user }}"
+       password: "{{ my_password | password_hash('sha512', 'A512') }}"
+       shell: "/bin/{{ my_user }}"
        state: present
        remove: true
        home: /home/bob
@@ -27,8 +27,9 @@
 
     - name: Move readme_bob to bob's directory
       command: mv /var/lib/jenkins/workspace/Main/readme_bob.txt /home/bob/ && chown bob /home/bob/readme_bob.txt && chmod 600 /home/bob/readme_bob.txt
+      when: key_exist.stat.exist
 
     - name: Move readme_bob to bob's directory and set permissions
       command: mv /var/lib/jenkins/workspace/Main/readme_bob.txt /home/bob/
-
+      when: key_exist.stat.exist
 ...
