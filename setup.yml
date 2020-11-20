@@ -2,14 +2,16 @@
 - name: Playbook for Bob
   hosts: 127.0.0.1
   connection: local
-  remote_user: root
-  gather_facts: true
+  gather_facts: false
+  vars:
+    user:
+    password:
 
   tasks:
     - name: Create a new user called Bob
       user:
-       name: bob
-       password: "{{ default_user_password | password_hash('sha512', 'A512') }}"
+       name: " {{ user }}"
+       password: "{{ password | password_hash('sha512', 'A512') }}"
        shell: /bin/bash
        state: present
        remove: true
