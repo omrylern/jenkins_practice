@@ -26,7 +26,7 @@ stor = int(os.popen(cmd).read().strip("\n"))
 data['Storage'] = stor
 
 #Get current build with enviroment from Jenkins
-data['Build'] = sys.argv[0]
+data['Build'] = sys.argv[1]
 
 #Get workspace path
 data['Workspace'] = os.getcwd()
