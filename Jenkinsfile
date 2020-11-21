@@ -1,5 +1,3 @@
-properties([[$class: 'JiraProjectProperty'], parameters([file(description: '', name: 'public_key.pub')])])
-
 pipeline {
 
   agent any
