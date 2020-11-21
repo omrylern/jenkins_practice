@@ -13,6 +13,11 @@ pipeline {
         """
       }
     }
+    post {
+      failure {
+        echo "The string does not match the pattern of RSA key. Please enter a valid key."
+      }
+    }
       
     stage("Ansible") {
      
