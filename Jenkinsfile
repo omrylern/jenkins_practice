@@ -37,4 +37,6 @@ pipeline {
   post {
     failure {
       echo "The string entered is not a valid RSA key. Please check it again and try the build again."
+    }
+  }
 }
