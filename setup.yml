@@ -15,7 +15,6 @@
         password: "{{ my_password | password_hash('sha512', 'A512') }}"
         shell: /bin/bash
         state: present
-        remove: true
         home: "/home/{{ my_user }}"
 
     - name: Create .ssh dir
@@ -25,10 +24,6 @@
         owner: "{{ my_user }}"
         group: "{{ my_user }}"
         mode: 0700
-
-    - name: Create rsa keys
-      become: "{{ my_user }}"
-      command: ssh-keygen -b 2048 -t rsa -f /home/{{ my_user }}/.ssh/id_rsa -q -N ""
 
     - name: Verify public  keys is present
       file:
