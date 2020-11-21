@@ -1,3 +1,14 @@
+---
+- name: Playbook for Bob
+  hosts: 127.0.0.1
+  become: true
+  connection: local
+  gather_facts: false
+  vars:
+    my_user:
+    my_password:
+
+  tasks:
     - name: Create Bob with .ssh directory
       user:
         name: "{{ my_user }}"
