@@ -34,9 +34,4 @@ pipeline {
       }
     }
   }
-  post {
-    failure {
-      echo "The string entered is not a valid RSA key. Please check it (you can use ssh-keygen man page for more info) and try the build again."
-    }
-  }
 }
