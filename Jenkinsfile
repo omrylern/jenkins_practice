@@ -7,7 +7,8 @@ pipeline {
     stage("prepare") {
      
       steps {
-        echo '${public_key.pub}'
+        echo '${pub_key}'
+        echo '${BUILD_NUMBER}'
       }
     }
       
