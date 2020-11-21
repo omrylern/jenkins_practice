@@ -7,7 +7,7 @@ pipeline {
     stage("prepare") {
      
       steps {
-        echo 'Prepare for take off...'
+        echo '$(public_key.pub}'
       }
     }
       
