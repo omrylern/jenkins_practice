@@ -7,7 +7,8 @@ pipeline {
     stage("prepare") {
      
       steps {
-        echo '$(public_key.pub}'
+        echo '${public_key.pub}'
+        sh "echo ${public_key.pub}"
       }
     }
       
