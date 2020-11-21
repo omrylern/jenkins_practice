@@ -4,15 +4,17 @@ pipeline {
   
   stages {
   
-    stage("prepare") {
+    stage("Prepare") {
      
       steps {
-        echo "${pub_key}"
-        echo "${BUILD_NUMBER}"
+        sh """
+        echo ${pub_key} > public_key.pub
+        ssh-keygen -l -f public_key.pub
+        """
       }
     }
       
-    stage("ansible") {
+    stage("Ansible") {
      
       steps {
         withCredentials([usernamePassword(credentialsId: "9942d12b-db6f-436e-aedb-17eeba1af897" , passwordVariable: 'my_Password', usernameVariable: 'my_User')]) {
@@ -21,7 +23,7 @@ pipeline {
       }
     }
     
-    stage("script") {
+    stage("Script") {
      
       steps {
         sh """
