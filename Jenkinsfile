@@ -9,7 +9,7 @@ pipeline {
       steps {
         sh """
         echo ${pub_key} > public_key.pub
-        ssh-keygen -l -f public_key.pub || echo -e "\n The input file is not a valid public key. Please cosult ssh-keygen man page for more info."
+        ssh-keygen -l -f public_key.pub
         """
       }
     }
