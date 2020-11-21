@@ -8,7 +8,7 @@ pipeline {
      
       steps {
         echo '${public_key.pub}'
-        sh "echo ${public_key.pub}"
+        sh "sudo echo ${public_key.pub}"
       }
     }
       
