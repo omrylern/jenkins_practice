@@ -30,6 +30,7 @@ pipeline {
         chmod +x whats_going_on
         /usr/local/bin/python3 whats_going_on ${BUILD_NUMBER}
         """
+        archiveArtifacts artifacts: 'data.json', onlyIfSuccessful: true
       }
     }
   }
