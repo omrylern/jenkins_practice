@@ -16,7 +16,7 @@ data['Date'] = today.strftime('%d/%m/%Y')
 
 
 #Get free memory
-cmd = "free -m | awk \'FNR == 2 {print $4}\'"
+cmd = "free | awk \'FNR == 2 {print $4}\'"
 mem =  int(os.popen(cmd).read().strip("\n"))
 data['Memory'] = mem
 
